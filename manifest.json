@@ -1,0 +1,30 @@
+{
+  "name": "YouBarrageTube",
+  "description" : "A Commentary Subtitle System for Youtube",
+  "version": "1.0",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "main.html",
+    "default_icon": "images/favicon.png"
+  },
+  "icons": {
+    "16": "images/favicon.png"
+  },
+  "permissions": [
+    "tabs",
+    "http://www.youbarragetube.com/*",
+    "https://www.youtube.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["script/jquery-3.3.1.min.js", "script/content.js"],
+      "css": ["style/content.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "scripts": ["script/jquery-3.3.1.min.js", "script/background.js"],
+    "persistent": false
+  }
+}
