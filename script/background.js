@@ -28,22 +28,26 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  console.log(changeInfo);
-  var tabIndex = activeTabs.indexOf(tabId);
-  if(changeInfo.url && changeInfo.url.match(regx)){
-    // a new tab visit youtube, request comments for new id
-    if(tabIndex<0){
-      activeTabs.push(tabId);
-      console.log('new tab');
-    }
-    var videoId = getURLParameter(changeInfo.url,'v');
-    sendCommentstoTab(videoId, tabId);
-  }else if(changeInfo.status && changeInfo.status==='complete' && tabIndex>-1){
+  // console.log(changeInfo);
+  // var tabIndex = activeTabs.indexOf(tabId);
+  // if(changeInfo.url && changeInfo.url.match(regx)){
+  //   // a new tab visit youtube, request comments for new id
+  //   if(tabIndex<0){
+  //     activeTabs.push(tabId);
+  //     console.log('new tab');
+  //   }
+  //   var videoId = getURLParameter(changeInfo.url,'v');
+  //   sendCommentstoTab(videoId, tabId);
+  // }else 
+  if(changeInfo.status && changeInfo.status==='complete'){
     // refresh
-    console.log('refresh');
+    console.log('tabUpdated');
     chrome.tabs.get(tabId,function(tab){
-      var videoId = getURLParameter(tab.url,'v');
-      sendCommentstoTab(videoId, tabId);
+      var url = tab.url
+      if(url.match(regx)){
+        var videoId = getURLParameter(url,'v');
+        sendCommentstoTab(videoId, tabId);
+      }
     });
   };
 });
