@@ -15,7 +15,7 @@ var sendCommentstoTab = function(videoId, tabId){
   function(data){
     // console.log(tabId);
     // console.log(data);
-    chrome.tabs.sendMessage(tabId, {comments: data});
+    chrome.tabs.sendMessage(tabId, {msg: 'comments', comments: data});
   },
   "json"
   ).fail(function(){ 
@@ -51,3 +51,13 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     });
   };
 });
+
+chrome.commands.onCommand.addListener(function(command) {
+  console.log('Command:', command);
+  chrome.tabs.query(  {currentWindow: true, active : true},
+    function(tabArray){
+      console.log(tabArray);
+      chrome.tabs.sendMessage(tabArray[0].id, {msg: 'popup'});
+    });
+  });
+
