@@ -1,7 +1,9 @@
 //console.log('hi');
-var commentsContainer='<div class="comments-container"></div>';
+var commentsContainer = '<div class="comments-container"></div>';
 
 $('.html5-video-player').append(commentsContainer);
+
+var commentInput = '<div style="padding-top=20px;width=100%;"><input id="bullets" type="text" /></div>';
 
 var container = $('.comments-container');
 
@@ -14,35 +16,55 @@ var currentIndex = 0;
 var video = $('video')[0];
 
 chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
+  function (request, sender, sendResponse) {
     comments = request.comments;
     currentIndex = 0;
     container.empty();
-});
+  });
 
-var getDuration = function(){
+var getDuration = function () {
   var temp = Math.random() * 10;
   if (temp < 1.5) return 'slow';
   if (temp > 8.5) return 'fast';
   else return 'medium';
 };
 
-var getCommentHTML = function(content,currentIndex){
-  return '<div class = "comment '+ getDuration() +'" style="top:'+ (currentIndex%15+1) * 5.5 +'%">'+content+'</div>'
+var getCommentHTML = function (content, currentIndex) {
+  return '<div class = "comment ' + getDuration() + '" style="top:' + (currentIndex % 15 + 1) * 5.5 + '%">' + content + '</div>'
 }
 
-var updateCurrentComments = function(currentTime){
+var updateCurrentComments = function (currentTime) {
   var num = 0;
-  while (currentIndex < comments.length && comments[currentIndex].videoTime <= currentTime){
-    if(currentTime === comments[currentIndex].videoTime && num<15){
+  while (currentIndex < comments.length && comments[currentIndex].videoTime <= currentTime) {
+    if (currentTime === comments[currentIndex].videoTime && num < 15) {
       container.append(getCommentHTML(comments[currentIndex].comment, currentIndex));
-      num ++;
+      num++;
     }
-    currentIndex ++;
+    currentIndex++;
   };
 };
 
-setInterval(function(){
+setInterval(function () {
   // console.log(comments[0])
   updateCurrentComments(Math.floor(video.currentTime));
-},500);
+}, 500);
+
+$(document).ready(function () {
+  // $('#player.style-scope.ytd-watch').after(commentInput);
+  $('#info.style-scope.ytd-watch').before(commentInput);
+  // $.get("commentInput.html", function (data) {
+  //   $('#info.style-scope.ytd-watch').before(commentInput);
+  //   console.log('read comment input');
+  //   // $("#appendToThis").append(data);
+  // });
+  $('#bullets').bind("enterKey", function (e) {
+    //do stuff here
+    console.log($('#bullets').val());
+    $('#bullets').val("");
+  });
+  $('#bullets').keyup(function (e) {
+    if (e.keyCode == 13) {
+      $(this).trigger("enterKey");
+    }
+  });
+});
