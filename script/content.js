@@ -17,9 +17,19 @@ var video = $('video')[0];
 
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
-    comments = request.comments;
-    currentIndex = 0;
-    container.empty();
+    if (request.msg === 'comments') {
+      comments = request.comments;
+      currentIndex = 0;
+      container.empty();
+    }
+    else if(request.msg === 'popup'){
+      var x = document.getElementById("comment_field");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
   });
 
 var getDuration = function () {
@@ -68,3 +78,6 @@ $(document).ready(function () {
     }
   });
 });
+
+let pop_textfield = '<textarea rows="2" cols = "50" id ="comment_field" class="pop_textfield">hello everyone</textarea>';
+$('.html5-video-player').append(pop_textfield);

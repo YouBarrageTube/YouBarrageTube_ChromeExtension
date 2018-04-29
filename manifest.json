@@ -1,6 +1,6 @@
 {
   "name": "YouBarrageTube",
-  "description" : "A Commentary Subtitle System for Youtube",
+  "description": "A Commentary Subtitle System for Youtube",
   "version": "1.0",
   "manifest_version": 2,
   "browser_action": {
@@ -17,14 +17,32 @@
   ],
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/*"],
-      "js": ["script/jquery-3.3.1.min.js", "script/content.js"],
-      "css": ["style/content.css"],
+      "matches": [
+        "https://www.youtube.com/*"
+      ],
+      "js": [
+        "script/jquery-3.3.1.min.js",
+        "script/content.js"
+      ],
+      "css": [
+        "style/content.css"
+      ],
       "run_at": "document_end"
     }
   ],
   "background": {
-    "scripts": ["script/jquery-3.3.1.min.js", "script/background.js"],
+    "scripts": [
+      "script/jquery-3.3.1.min.js",
+      "script/background.js"
+    ],
     "persistent": false
+  },
+  "commands": {
+    "toggle_feature_foo": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+V"
+      },
+      "description": "Toggle feature foo"
+    }
   }
 }
