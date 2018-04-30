@@ -2,6 +2,8 @@ console.log("hola");
 
 var activeTabs = [];
 
+var videoId;
+
 var regx = new RegExp('https://www.youtube.com/watch.?');
 
 var getURLParameter = function (sPageURL, sParam){
@@ -14,7 +16,7 @@ var sendCommentstoTab = function(videoId, tabId){
   {videoId:videoId},
   function(data){
     // console.log(tabId);
-    // console.log(data);
+    //console.log(data);
     chrome.tabs.sendMessage(tabId, {msg: 'comments', comments: data});
   },
   "json"
@@ -24,7 +26,13 @@ var sendCommentstoTab = function(videoId, tabId){
 };
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  console.log(sender);
+  console.log(request);
+  var newComment = {videoId,...request};
+  console.log(newComment);
+  $.post('http://www.youbarragetube.com/v1/comment',
+  {videoId,...request},
+  "json"
+  )
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
@@ -45,7 +53,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     chrome.tabs.get(tabId,function(tab){
       var url = tab.url
       if(url.match(regx)){
-        var videoId = getURLParameter(url,'v');
+        videoId = getURLParameter(url,'v');
         sendCommentstoTab(videoId, tabId);
       }
     });

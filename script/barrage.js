@@ -56,3 +56,16 @@ Barrage.prototype.generateColor = function(){
   else if (rand<0.95) return 'blanchedalmond';
   else return 'coral';
 }
+
+Barrage.prototype.newDanmu = function (comment) {
+  var danmu = $('<div class="comment"">' + comment + '</div>');
+  var animatedTime = 7000 + Math.floor(Math.random()*5000);
+  danmu.css({
+    'top': ((this.currentIndex)%15+1) * 5.5 + '%',
+    'color': this.generateColor(),
+  }).appendTo(this.container).animate({
+    left:'-100%'
+  },animatedTime,"linear",function(){
+    this.remove();
+  });
+}
