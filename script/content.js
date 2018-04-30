@@ -101,7 +101,9 @@ var createInputArea = function () {
 }
 
 var submitComment = function (comment,videoTime) {
-  chrome.runtime.sendMessage({comment,videoTime});
+  chrome.runtime.sendMessage({comment,videoTime},function(response){
+    barrage.update($(".comments-container"), response.comments);
+  });
   barrage.newDanmu(comment);
 }
 

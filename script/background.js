@@ -15,8 +15,6 @@ var sendCommentstoTab = function(videoId, tabId){
   $.get('http://www.youbarragetube.com/v1/comments',
   {videoId:videoId},
   function(data){
-    // console.log(tabId);
-    //console.log(data);
     chrome.tabs.sendMessage(tabId, {msg: 'comments', comments: data});
   },
   "json"
@@ -26,13 +24,20 @@ var sendCommentstoTab = function(videoId, tabId){
 };
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  console.log(request);
-  var newComment = {videoId,...request};
-  console.log(newComment);
   $.post('http://www.youbarragetube.com/v1/comment',
   {videoId,...request},
   "json"
-  )
+  );
+  $.get('http://www.youbarragetube.com/v1/comments',
+  {videoId},
+  function(data){
+    console.log('here is the data');
+    console.log(data);
+    sendResponse({comments: data});
+  },
+  "json"
+  );
+  return true
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
