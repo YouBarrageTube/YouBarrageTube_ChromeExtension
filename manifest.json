@@ -43,7 +43,7 @@
   "commands": {
     "toggle_feature_foo": {
       "suggested_key": {
-        "default": "Ctrl+Shift+V"
+        "default": "Ctrl+B"
       },
       "description": "Toggle feature foo"
     }
