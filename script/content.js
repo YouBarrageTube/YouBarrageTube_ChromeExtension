@@ -56,8 +56,32 @@ var startDanmu = function(comments){
 
 var createInputArea = function () {
   if ($('#bullets').length === 0) {
-    var commentInput = '<div style="padding-top=20px;width=100%;"><input id="bullets" type="text" /></div>';
-    $('#info.style-scope.ytd-watch').before(commentInput);
+  //   var commentInput = '<div class="container">\
+  // \
+  //   <h2>Google Material Design in CSS3<small>Inputs</small></h2>\
+  //   \
+  //   <form>\
+  //     <div class="group">\
+  //       <input id="bullets" type="text">\
+  //       <span class="highlight"></span>\
+  //       <span class="bar"></span>\
+  //       <label>Name</label>\
+  //     </div>\
+  //       \
+  //   </form>\
+  //       \
+  //   <p class="footer">\
+  //   </p>\
+  //   \
+  // </div>';
+  var commentInput = '<div style="padding-top=20px;width=100%;">\
+                        <br>\
+                        <label>Share your comments below!</label>\
+                        <input id="bullets" type="text" />\
+                        <span class="highlight"></span>\
+                        <span class="bar"></span>\
+                      </div>';
+  $('#info.style-scope.ytd-watch').before(commentInput);
     $('#bullets').bind("enterKey", function (e) {
       //do stuff here
       console.log($('#bullets').val());
