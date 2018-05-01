@@ -1,17 +1,3 @@
-//console.log('hi');
-// var commentsContainer = '<div class="comments-container"></div>';
-
-// $(".html5-video-player").append(commentsContainer);
-
-
-// var container = $(".comments-container");
-
-//console.log(container);
-
-// console.log(video);
-
-// var video;
-
 var barrage = new Barrage(container, []);
 
 var startDanmu = function(comments){
@@ -56,24 +42,6 @@ var startDanmu = function(comments){
 
 var createInputArea = function () {
   if ($('#bullets').length === 0) {
-  //   var commentInput = '<div class="container">\
-  // \
-  //   <h2>Google Material Design in CSS3<small>Inputs</small></h2>\
-  //   \
-  //   <form>\
-  //     <div class="group">\
-  //       <input id="bullets" type="text">\
-  //       <span class="highlight"></span>\
-  //       <span class="bar"></span>\
-  //       <label>Name</label>\
-  //     </div>\
-  //       \
-  //   </form>\
-  //       \
-  //   <p class="footer">\
-  //   </p>\
-  //   \
-  // </div>';
   var commentInput = '<div style="padding-top=20px;width=100%;">\
                         <br>\
                         <label>Share your comments below!</label>\
