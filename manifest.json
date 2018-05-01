@@ -1,7 +1,7 @@
 {
   "name": "YouBarrageTube",
   "description": "A Commentary Subtitle System for Youtube",
-  "version": "1.1",
+  "version": "1.2",
   "manifest_version": 2,
   "browser_action": {
     "default_popup": "main.html",

@@ -169,9 +169,9 @@ input:focus ~ .highlight {
   z-index :1000;
   position: absolute;
   display: none;
-  top: 20%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-20%);
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .pop_input {
@@ -184,8 +184,8 @@ input:focus ~ .highlight {
   z-index :1000;
   position: absolute;
   display: none;
-  top: 20%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-20%);
-  opacity: 0.7;
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 0.5;
 }
