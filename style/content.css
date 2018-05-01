@@ -173,3 +173,19 @@ input:focus ~ .highlight {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
+
+.pop_input {
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+  z-index :1000;
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 0.5;
+}

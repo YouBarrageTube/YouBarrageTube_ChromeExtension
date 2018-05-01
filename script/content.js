@@ -45,7 +45,7 @@ var createInputArea = function () {
   var commentInput = '<div style="padding-top=20px;width=100%;">\
                         <br>\
                         <label>Share your comments below!</label>\
-                        <input id="bullets" type="text" />\
+                        <input id="bullets" placeholder="comments" type="text" />\
                         <span class="highlight"></span>\
                         <span class="bar"></span>\
                       </div>';
@@ -66,7 +66,12 @@ var createInputArea = function () {
   }
 
   if ($('#comment-field').length == 0) {
-    let pop_textfield = '<textarea rows="2" cols = "50" id ="comment-field" class="pop_textfield">hello everyone</textarea>';
+    // let pop_textfield = '<textarea rows="2" cols = "50" id ="comment-field" class="pop_textfield">hello everyone</textarea>';
+    let pop_textfield = '<div style="padding-top=20px;width=100%;">\
+                            <input id="comment-field" placeholder="your comments" type="text" class="pop_input" />\
+                            <span class="highlight"></span>\
+                            <span class="bar"></span>\
+                          </div>';
     $('#movie_player').append(pop_textfield);
     $('#comment-field').bind("enterKey", function (e) {
       //do stuff here
