@@ -115,6 +115,7 @@ chrome.runtime.onMessage.addListener(
       var x = document.getElementById("comment-field");
       if (x.style.display === "none") {
         x.style.display = "block";
+        x.focus();
       } else {
         x.style.display = "none";
       }
