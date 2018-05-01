@@ -108,6 +108,7 @@ chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
     if (request.msg === 'comments') {
       createInputArea();
+      document.getElementById("comment-field").style.display = "none";
       startDanmu(request.comments);
       console.log(barrage.comments);
     }
